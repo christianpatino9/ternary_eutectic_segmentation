@@ -1,0 +1,29 @@
+inputs:
+ - folder
+ - file (*.txt)
+
+outputs (files only):
+ - outline.tif
+ - overlayed.tif
+ - Parameters.txt
+ - segmented.png
+ - $name.csv
+
+Technical Debt Improvements:
+ - overall interface
+   - maybe turn main into a script, and work from there, easier to follow
+ - input handling
+   - what do the inputs even mean?
+ - use builtins where possible
+   - file handling
+   - what does each function do?
+ - remove dead code
+ - improve/trim comments
+ - style consistency
+ - refactoring
+ - why RNG? remove and replace with deterministic strategy if possible
+
+Feature Improvements:
+ - batch mode
+   - automatically loop over all images in folder
+   - automatically generate useful aggregate outputs
