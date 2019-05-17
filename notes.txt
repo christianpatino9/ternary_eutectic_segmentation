@@ -27,3 +27,5 @@ Feature Improvements:
  - batch mode
    - automatically loop over all images in folder
    - automatically generate useful aggregate outputs
+   
+Learn git!
