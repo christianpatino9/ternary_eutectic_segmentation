@@ -2,8 +2,6 @@
 input_file = which('Input.txt');
 
 PhasesToAnalyze=[1,1,1];
-Mat_phase_fractions=zeros(3,1);
-MaxNumNeighbors=15;
 
 %% INPUT HANDLING
 raw_input_data = readtable(input_file,'delimiter',';');
@@ -51,7 +49,7 @@ Triple_points = Triple_point_density(CombinedMicrostructure,m,n);
 %     [Distance_map] = Border_distance(PixSeparated,m,n,FolderPath,File);
 
 % Phase fractions
-[Mat_phase_fractions]=Phase_fractions(CombinedMicrostructure,m,n,Mat_phase_fractions);
+phase_fractions = compute_phase_fractions(CombinedMicrostructure);
 
 % Average interface length
 % The interface orientation is a histogram with the bin size 10 degrees
@@ -62,6 +60,7 @@ Triple_points = Triple_point_density(CombinedMicrostructure,m,n);
 
 % Nearest neighbor statistics (the first value in the matrix means no
 % neighbour)
+MaxNumNeighbors=15;
 [Mat_Nearest_Neighbours]= Neighbours(CombinedMicrostructure,PixSeparated,MaxNumNeighbors);
 
 % Particle size
@@ -112,5 +111,5 @@ end
 Writing_Output_file(FolderPath,File,micropix,Sharpen,Segmentation_split,Correction_Algorithms,Parameters_for_correction,Boundary_comp);
 
 % Writing out the results in a csv file
-Writing_Out_Data(FolderPath,File,Mat_phase_fractions,Mat_av_if_length_mu,Mat_av_if_length_relative_mu,Mat_angles_rel_hist,Mat_dist_average_mu,Mat_Nearest_Neighbours,Mat_Area_mu,Mat_Major_axes_mu,Mat_Minor_axes_mu,Mat_Orientations,Mat_AspectRatio,Mat_average_Axes_length_mu,Mat_average_shape_factor,av_curvature,max_curvature,min_curvature,Matrix_Moment_Invariants_Shape_Factors,Triple_points_mu)
+Writing_Out_Data(FolderPath,File,phase_fractions,Mat_av_if_length_mu,Mat_av_if_length_relative_mu,Mat_angles_rel_hist,Mat_dist_average_mu,Mat_Nearest_Neighbours,Mat_Area_mu,Mat_Major_axes_mu,Mat_Minor_axes_mu,Mat_Orientations,Mat_AspectRatio,Mat_average_Axes_length_mu,Mat_average_shape_factor,av_curvature,max_curvature,min_curvature,Matrix_Moment_Invariants_Shape_Factors,Triple_points_mu)
 fclose(input_data);
